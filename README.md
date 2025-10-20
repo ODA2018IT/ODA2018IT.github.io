@@ -1,2 +1,2 @@
-# ODA2018IT.github.io
+# oda2018it.github.io
 For new coding learning practice 
