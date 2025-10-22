@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn CSS Basics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2575fc;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .section {
+            display: none;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            border-left: 5px solid #6a11cb;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #6a11cb;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #2575fc;
+            padding-bottom: 8px;
+        }
+        
+        p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        .code-example {
+            background-color: #f8f9fa;
+            border-left: 4px solid #2575fc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+        
+        .demo-box {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .demo-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .step-indicator {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .property-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .property-table th, .property-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .property-table th {
+            background-color: #6a11cb;
+            color: white;
+        }
+        
+        .property-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Basics</h1>
+        <p class="subtitle">Learn the fundamentals of CSS</p>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <div class="section active" id="section1">
+            <h2>What is CSS?</h2>
+            <p><strong>CSS (Cascading Style Sheets)</strong> is a stylesheet language used to describe the presentation of a document written in HTML or XML. CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.</p>
+            <p>CSS is one of the cornerstone technologies of the World Wide Web, alongside HTML and JavaScript. It enables the separation of presentation and content, including layout, colors, and fonts, improving content accessibility and providing more flexibility and control in the specification of presentation characteristics.</p>
+            <div class="code-example">
+                /* This is a CSS comment */<br>
+                body {<br>
+                &nbsp;&nbsp;background-color: lightblue;<br>
+                }<br>
+                <br>
+                h1 {<br>
+                &nbsp;&nbsp;color: navy;<br>
+                &nbsp;&nbsp;margin-left: 20px;<br>
+                }
+            </div>
+        </div>
+        
+        <div class="section" id="section2">
+            <h2>CSS Syntax</h2>
+            <p>A CSS rule consists of a selector and a declaration block. The selector points to the HTML element you want to style. The declaration block contains one or more declarations separated by semicolons. Each declaration includes a CSS property name and a value, separated by a colon.</p>
+            <div class="code-example">
+                selector {<br>
+                &nbsp;&nbsp;property: value;<br>
+                &nbsp;&nbsp;property: value;<br>
+                }<br>
+                <br>
+                Example:<br>
+                p {<br>
+                &nbsp;&nbsp;color: red;<br>
+                &nbsp;&nbsp;text-align: center;<br>
+                }
+            </div>
+            <div class="demo-box">
+                <p class="demo-text">This paragraph is styled with CSS!</p>
+            </div>
+        </div>
+        
+        <div class="section" id="section3">
+            <h2>CSS Selectors</h2>
+            <p>CSS selectors are used to "find" (or select) the HTML elements you want to style. We can divide CSS selectors into five categories:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li>Simple selectors (select elements based on name, id, class)</li>
+                <li>Combinator selectors (select elements based on a specific relationship between them)</li>
+                <li>Pseudo-class selectors (select elements based on a certain state)</li>
+                <li>Pseudo-elements selectors (select and style a part of an element)</li>
+                <li>Attribute selectors (select elements based on an attribute or attribute value)</li>
+            </ul>
+            <div class="code-example">
+                /* Element selector */<br>
+                p {<br>
+                &nbsp;&nbsp;text-align: center;<br>
+                &nbsp;&nbsp;color: red;<br>
+                }<br>
+                <br>
+                /* ID selector */<br>
+                #para1 {<br>
+                &nbsp;&nbsp;text-align: center;<br>
+                &nbsp;&nbsp;color: red;<br>
+                }<br>
+                <br>
+                /* Class selector */<br>
+                .center {<br>
+                &nbsp;&nbsp;text-align: center;<br>
+                &nbsp;&nbsp;color: red;<br>
+                }<br>
+                <br>
+                /* Universal selector */<br>
+                * {<br>
+                &nbsp;&nbsp;margin: 0;<br>
+                &nbsp;&nbsp;padding: 0;<br>
+                }
+            </div>
+        </div>
+        
+        <div class="section" id="section4">
+            <h2>CSS Box Model</h2>
+            <p>All HTML elements can be considered as boxes. In CSS, the term "box model" is used when talking about design and layout. The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content.</p>
+            <div class="demo-box" style="background: white; color: black; border: 2px dashed #6a11cb; position: relative;">
+                <div style="background: #2575fc; color: white; padding: 20px; border: 5px solid #6a11cb; margin: 10px;">
+                    <p style="margin: 0; text-align: center;">Content</p>
+                </div>
+                <div style="position: absolute; top: 10px; left: 10px; font-size: 0.8rem;">Margin</div>
+                <div style="position: absolute; top: 25px; left: 25px; font-size: 0.8rem;">Border</div>
+                <div style="position: absolute; top: 40px; left: 40px; font-size: 0.8rem;">Padding</div>
+                <div style="position: absolute; top: 60px; left: 60px; font-size: 0.8rem;">Content</div>
+            </div>
+            <div class="code-example">
+                div {<br>
+                &nbsp;&nbsp;width: 300px;<br>
+                &nbsp;&nbsp;padding: 20px;<br>
+                &nbsp;&nbsp;border: 5px solid gray;<br>
+                &nbsp;&nbsp;margin: 10px;<br>
+                }
+            </div>
+        </div>
+        
+        <div class="section" id="section5">
+            <h2>CSS Layout - Flexbox</h2>
+            <p>The Flexible Box Layout Module (Flexbox) makes it easier to design flexible responsive layout structure without using float or positioning. A flex container expands items to fill available free space or shrinks them to prevent overflow.</p>
+            <div class="demo-box" style="background: white; color: black;">
+                <div style="display: flex; justify-content: space-around; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+                    <div style="background: #6a11cb; color: white; padding: 15px; margin: 5px; border-radius: 5px; flex: 1;">Item 1</div>
+                    <div style="background: #2575fc; color: white; padding: 15px; margin: 5px; border-radius: 5px; flex: 1;">Item 2</div>
+                    <div style="background: #6a11cb; color: white; padding: 15px; margin: 5px; border-radius: 5px; flex: 1;">Item 3</div>
+                </div>
+            </div>
+            <div class="code-example">
+                .container {<br>
+                &nbsp;&nbsp;display: flex;<br>
+                &nbsp;&nbsp;justify-content: space-between;<br>
+                &nbsp;&nbsp;align-items: center;<br>
+                }<br>
+                <br>
+                .item {<br>
+                &nbsp;&nbsp;flex: 1;<br>
+                }
+            </div>
+        </div>
+        
+        <div class="section" id="section6">
+            <h2>CSS Layout - Grid</h2>
+            <p>The CSS Grid Layout Module offers a grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning. Like tables, grid layout enables us to align elements into columns and rows.</p>
+            <div class="demo-box" style="background: white; color: black;">
+                <div style="display: grid; grid-template-columns: auto auto auto; gap: 10px; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+                    <div style="background: #6a11cb; color: white; padding: 20px; text-align: center; border-radius: 5px;">1</div>
+                    <div style="background: #2575fc; color: white; padding: 20px; text-align: center; border-radius: 5px;">2</div>
+                    <div style="background: #6a11cb; color: white; padding: 20px; text-align: center; border-radius: 5px;">3</div>
+                    <div style="background: #2575fc; color: white; padding: 20px; text-align: center; border-radius: 5px;">4</div>
+                    <div style="background: #6a11cb; color: white; padding: 20px; text-align: center; border-radius: 5px;">5</div>
+                    <div style="background: #2575fc; color: white; padding: 20px; text-align: center; border-radius: 5px;">6</div>
+                </div>
+            </div>
+            <div class="code-example">
+                .grid-container {<br>
+                &nbsp;&nbsp;display: grid;<br>
+                &nbsp;&nbsp;grid-template-columns: auto auto auto;<br>
+                &nbsp;&nbsp;gap: 10px;<br>
+                &nbsp;&nbsp;padding: 10px;<br>
+                }<br>
+                <br>
+                .grid-item {<br>
+                &nbsp;&nbsp;background-color: rgba(255, 255, 255, 0.8);<br>
+                &nbsp;&nbsp;text-align: center;<br>
+                &nbsp;&nbsp;padding: 20px;<br>
+                }
+            </div>
+        </div>
+        
+        <div class="section" id="section7">
+            <h2>CSS Responsive Design</h2>
+            <p>Responsive web design makes your web page look good on all devices. Responsive web design uses only HTML and CSS. Responsive web design is not a program or a JavaScript. It uses CSS media queries to adapt the layout to the viewing environment.</p>
+            <div class="code-example">
+                /* For mobile phones: */<br>
+                [class*="col-"] {<br>
+                &nbsp;&nbsp;width: 100%;<br>
+                }<br>
+                <br>
+                @media only screen and (min-width: 600px) {<br>
+                &nbsp;&nbsp;/* For tablets: */<br>
+                &nbsp;&nbsp;.col-s-1 {width: 8.33%;}<br>
+                &nbsp;&nbsp;.col-s-2 {width: 16.66%;}<br>
+                &nbsp;&nbsp;/* ... more column classes */<br>
+                }<br>
+                <br>
+                @media only screen and (min-width: 768px) {<br>
+                &nbsp;&nbsp;/* For desktop: */<br>
+                &nbsp;&nbsp;.col-1 {width: 8.33%;}<br>
+                &nbsp;&nbsp;.col-2 {width: 16.66%;}<br>
+                &nbsp;&nbsp;/* ... more column classes */<br>
+                }
+            </div>
+            <p>Common CSS properties for responsive design:</p>
+            <table class="property-table">
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>width</td>
+                    <td>Sets the width of an element</td>
+                </tr>
+                <tr>
+                    <td>max-width</td>
+                    <td>Sets the maximum width of an element</td>
+                </tr>
+                <tr>
+                    <td>media queries</td>
+                    <td>Used to apply different styles for different media types/devices</td>
+                </tr>
+                <tr>
+                    <td>flexbox</td>
+                    <td>Layout mode that provides a more efficient way to lay out items</td>
+                </tr>
+                <tr>
+                    <td>grid</td>
+                    <td>CSS layout system optimized for 2-dimensional layouts</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="button-container">
+            <button id="prevBtn" disabled>Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+        
+        <div class="step-indicator">
+            <span id="currentStep">1</span> of <span id="totalSteps">7</span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const currentStep = document.getElementById('currentStep');
+            const totalSteps = document.getElementById('totalSteps');
+            const progress = document.getElementById('progress');
+            
+            let currentSection = 0;
+            totalSteps.textContent = sections.length;
+            
+            function updateButtons() {
+                prevBtn.disabled = currentSection === 0;
+                nextBtn.textContent = currentSection === sections.length - 1 ? 'Finish' : 'Next';
+                
+                // Update progress bar
+                const progressPercent = ((currentSection + 1) / sections.length) * 100;
+                progress.style.width = `${progressPercent}%`;
+                
+                // Update step indicator
+                currentStep.textContent = currentSection + 1;
+            }
+            
+            function showSection(index) {
+                sections.forEach(section => section.classList.remove('active'));
+                sections[index].classList.add('active');
+                currentSection = index;
+                updateButtons();
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentSection > 0) {
+                    showSection(currentSection - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentSection < sections.length - 1) {
+                    showSection(currentSection + 1);
+                } else {
+                    // Show thank you alert when finished
+                    alert('Thank you for learning CSS with us! We hope this was helpful in understanding CSS fundamentals.');
+                }
+            });
+            
+            // Initialize
+            updateButtons();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn HTML Basics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a2a6c;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #555;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .section {
+            display: none;
+            padding: 45px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            border-left: 5px solid #1a2a6c;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #fdbb2d;
+            padding-bottom: 8px;
+        }
+        
+        p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        .code-example {
+            background-color: #f5f5f5;
+            border-left: 4px solid #b21f1f;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .step-indicator {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+        footer{
+            background: red;
+            text-align: center;
+            padding: 4px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Basics</h1>
+        <p class="subtitle">Learn the fundamentals of HTML</p>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <div class="section active" id="section1">
+            <h2>What is HTML?</h2>
+            <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language for creating web pages and web applications. HTML describes the structure of a web page semantically and originally included cues for the appearance of the document.</p>
+            <p>HTML elements are the building blocks of HTML pages. With HTML constructs, images and other objects such as interactive forms may be embedded into the rendered page. HTML provides a means to create structured documents by denoting structural semantics for text such as headings, paragraphs, lists, links, quotes and other items.</p>
+            <div class="code-example">
+                &lt;!DOCTYPE html&gt;<br>
+                &lt;html&gt;<br>
+                &lt;head&gt;<br>
+                &nbsp;&nbsp;&lt;title&gt;Page Title&lt;/title&gt;<br>
+                &lt;/head&gt;<br>
+                &lt;body&gt;<br>
+                &nbsp;&nbsp;&lt;h1&gt;My First Heading&lt;/h1&gt;<br>
+                &nbsp;&nbsp;&lt;p&gt;My first paragraph.&lt;/p&gt;<br>
+                &lt;/body&gt;<br>
+                &lt;/html&gt;
+            </div>
+        </div>
+        
+        <div class="section" id="section2">
+            <h2>HTML Elements</h2>
+            <p>An HTML element is defined by a start tag, some content, and an end tag. The HTML element is everything from the start tag to the end tag.</p>
+            <p>Some HTML elements have no content (like the &lt;br&gt; element). These elements are called empty elements. Empty elements do not have an end tag!</p>
+            <div class="code-example">
+                &lt;tagname&gt;Content goes here...&lt;/tagname&gt;<br><br>
+                Examples:<br>
+                &lt;h1&gt;My Heading&lt;/h1&gt;<br>
+                &lt;p&gt;My paragraph.&lt;/p&gt;<br>
+                &lt;br&gt; (empty element)
+            </div>
+        </div>
+        
+        <div class="section" id="section3">
+            <h2>HTML Tags</h2>
+            <p>HTML tags are like keywords which define how a web browser will format and display the content. With the help of tags, a web browser can distinguish between HTML content and simple content.</p>
+            <p>HTML tags contain three main parts: opening tag, content and closing tag. But some HTML tags are unclosed tags. When a web browser reads an HTML document, the browser reads it from top to bottom and left to right. HTML tags are used to create HTML documents and render their properties.</p>
+            <div class="code-example">
+                Common HTML Tags:<br>
+                &lt;html&gt; - Root of an HTML document<br>
+                &lt;head&gt; - Contains metadata about the document<br>
+                &lt;title&gt; - Specifies a title for the document<br>
+                &lt;body&gt; - Contains the visible page content<br>
+                &lt;h1&gt; to &lt;h6&gt; - Defines HTML headings<br>
+                &lt;p&gt; - Defines a paragraph<br>
+                &lt;a&gt; - Defines a hyperlink<br>
+                &lt;img&gt; - Defines an image
+            </div>
+        </div>
+        
+        <div class="section" id="section4">
+            <h2>HTML Attributes</h2>
+            <p>HTML attributes provide additional information about HTML elements. All HTML elements can have attributes. Attributes are always specified in the start tag and usually come in name/value pairs like: name="value".</p>
+            <p>Attributes can be used to change the color, size, and other properties of HTML elements. Some attributes are required for certain HTML elements. For example, the &lt;img&gt; tag requires the src attribute to specify the source of the image.</p>
+            <div class="code-example">
+                &lt;a href="https://www.example.com"&gt;Visit Example.com&lt;/a&gt;<br><br>
+                &lt;img src="image.jpg" alt="Description of image"&gt;<br><br>
+                &lt;p style="color:red;"&gt;This is a red paragraph.&lt;/p&gt;<br><br>
+                &lt;input type="text" id="fname" name="fname"&gt;
+            </div>
+        </div>
+        
+        <div class="section" id="section5">
+            <h2>HTML Document Structure</h2>
+            <p>A typical HTML document has a defined structure that includes several key elements. The &lt;!DOCTYPE html&gt; declaration defines that this document is an HTML5 document. The &lt;html&gt; element is the root element of an HTML page.</p>
+            <p>The &lt;head&gt; element contains meta information about the HTML page. The &lt;title&gt; element specifies a title for the HTML page. The &lt;body&gt; element defines the document's body and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.</p>
+            <div class="code-example">
+                &lt;!DOCTYPE html&gt;<br>
+                &lt;html lang="en"&gt;<br>
+                &lt;head&gt;<br>
+                &nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>
+                &nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>
+                &nbsp;&nbsp;&lt;title&gt;Document Title&lt;/title&gt;<br>
+                &lt;/head&gt;<br>
+                &lt;body&gt;<br>
+                &nbsp;&nbsp;&lt;h1&gt;This is a Heading&lt;/h1&gt;<br>
+                &nbsp;&nbsp;&lt;p&gt;This is a paragraph.&lt;/p&gt;<br>
+                &lt;/body&gt;<br>
+                &lt;/html&gt;
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button id="prevBtn" disabled>Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+        
+        <div class="step-indicator">
+            <span id="currentStep">1</span> of <span id="totalSteps">5</span>
+        </div>
+        
+        <footer>@ODA SBS 2O18 ICT CLUB </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const currentStep = document.getElementById('currentStep');
+            const totalSteps = document.getElementById('totalSteps');
+            const progress = document.getElementById('progress');
+            
+            let currentSection = 0;
+            totalSteps.textContent = sections.length;
+            
+            function updateButtons() {
+                prevBtn.disabled = currentSection === 0;
+                nextBtn.textContent = currentSection === sections.length - 1 ? 'Finish' : 'Next';
+                
+                // Update progress bar
+                const progressPercent = ((currentSection + 1) / sections.length) * 100;
+                progress.style.width = `${progressPercent}%`;
+                
+                // Update step indicator
+                currentStep.textContent = currentSection + 1;
+            }
+            
+            function showSection(index) {
+                sections.forEach(section => section.classList.remove('active'));
+                sections[index].classList.add('active');
+                currentSection = index;
+                updateButtons();
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentSection > 0) {
+                    showSection(currentSection - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentSection < sections.length - 1) {
+                    showSection(currentSection + 1);
+                } else {
+                    window.location.href ="css.html";
+                }
+            });
+            
+            // Initialize
+            updateButtons();
+        });
+    </script>
+</body>
+</html>
